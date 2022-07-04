@@ -2,12 +2,14 @@ import './App.css';
 import { useEffect } from 'react';
 import { words } from "./components/words"
 import * as d3 from "d3"
+import rd3 from 'react-d3-library'
 
 function App() {
 
 
 
   useEffect(() => {
+
     const numberOfRow = 780
 
     const neededWords = []
@@ -121,7 +123,7 @@ function App() {
         line.startCoord.y = Math.floor(numberOfRow / 2) + (line.index - (Math.ceil(someWords.length / 2)))
         //задаем стартовую координату по х и у
         line.coords = line.letters.map((item, index) => {
-          return [line.startCoord.x + index, line.startCoord.y]
+          return [line.startCoord.x + index * 50, line.startCoord.y]
           //назначаем массив-координаты каждой букве в зависимости от положения первого символа и направления слова
         })
   
@@ -133,7 +135,7 @@ function App() {
         line.startCoord.y = Math.floor((numberOfRow / 2 - Math.ceil(line.letters.length / 2)))
         //задаем стартовую координату по х и у
         line.coords = line.letters.map((item, index) => {
-          return [line.startCoord.x, line.startCoord.y + index]
+          return [line.startCoord.x, line.startCoord.y + index * 50]
           //назначаем массив-координаты каждой букве в зависимости от положения первого символа и направления слова
         })
   
@@ -144,24 +146,76 @@ function App() {
 
     //d3js начинается тут
 
-    const canvas = d3.select('#canvas')
-      .classed('canvas', true)
+    const canvas = rd3.select('div')
 
-    const rounds = canvas
-      .selectAll(".round")
-      .data(wordLines)
-      .enter()
+    //в атрибутах будет коодината первой точки относительно верхней левой точки канваса
+    const word0 = canvas
       .append('circle')
-      .classed('.round')
-      //.attr('cx', )
-      //.attr('cy', )
-      //.attr('r', '50px')
+      .data(wordLines[0])
+      .attr('r', 40)
+      .attr('cx', 50)
+      .attr('cy', 50)
+    const word1 = canvas
+      .append('circle')
+      .data(wordLines[1])
+      .attr()
+      .attr()
+      .attr()
+    const word2 = canvas
+      .append('circle')
+      .data(wordLines[2])
+      .attr()
+      .attr()
+      .attr()
+    const word3 = canvas
+      .append('circle')
+      .data(wordLines[3])
+      .attr()
+      .attr()
+      .attr()
+    const word4 = canvas
+      .append('circle')
+      .data(wordLines[4])
+      .attr()
+      .attr()
+      .attr()
+    const word5 = canvas
+      .append('circle')
+      .data(wordLines[5])
+      .attr()
+      .attr()
+      .attr()
+    const word6 = canvas
+      .append('circle')
+      .data(wordLines[6])
+      .attr()
+      .attr()
+      .attr()
+    const word7 = canvas
+      .append('circle')
+      .data(wordLines[7])
+      .attr()
+      .attr()
+      .attr()
+    const word8 = canvas
+      .append('circle')
+      .data(wordLines[8])
+      .attr()
+      .attr()
+      .attr()
+    const word9 = canvas
+      .append('circle')
+      .data(wordLines[9])
+      .attr()
+      .attr()
+      .attr()
+
 
   }, [])
 
   return (
-    <div className="App">
-      <svg id="canvas"></svg>
+    <div >
+      <svg id="canvas" height="1080px" width="780px" className="App canvas"></svg>
     </div>
   );
 }
